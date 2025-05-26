@@ -4,7 +4,7 @@ import router from '../src/routes/productRoutes';
 import { error } from 'console';
 const app = express();
 
-const PORT= 3000;
+const PORT= 3000;  
 // app.get('/', (req:Request, res:Response)=>{
 //     res.send("hello world i am express");
 // })
@@ -24,5 +24,5 @@ app.listen(PORT, ()=>{
     console.log(`server listening on port: ${PORT}`)
 })
 
-export default app
+export default app;
 
