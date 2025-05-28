@@ -1,13 +1,13 @@
 
 
-interface Product{
-    id: number,
-    name: string,
-    price: number,
-    description: string,
-}
+// interface Product{
+//     id: number,
+//     name: string,
+//     price: number,
+//     description: string,
+// }
 
-const products: Product[]=[];
+// const products: Product[]=[];
 
 
 
@@ -25,9 +25,9 @@ const products: Product[]=[];
 // }
 
 
- function getallProduct(){
-   return products;
-}
+//  function getallProduct(){
+//    return products;
+// }
 
 // export function getProductById(id:number){
 //     const product = products.find((p) => p.id === id);
@@ -58,4 +58,4 @@ const products: Product[]=[];
 //     return deletedProduct; 
 // }
 
-export {getallProduct, products}; 
+// export {getallProduct, products}; 
