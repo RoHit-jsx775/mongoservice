@@ -28,7 +28,7 @@ export const userModel={
             values.push(users.email);
         }
         if(!fields.length) return undefined;
-         await pool.query(`UPDATE categories SET ${fields.join(", ")} WHERE category_id = ?`, [
+         await pool.query(`UPDATE users SET ${fields.join(", ")} WHERE user_id = ?`, [
       ...values,
       id,
     ]);
@@ -48,7 +48,7 @@ export const userModel={
         // const { name } = category;
        const [result]: any = await pool.query(
       "INSERT INTO users (name, user_name, email) VALUES (?, ?, ?)",
-      [users.name,]
+      [users.name, users.user_name, users.email]
     );
     
     const newUserId = result.insertId;
