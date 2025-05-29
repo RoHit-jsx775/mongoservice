@@ -2,6 +2,7 @@ import express, {NextFunction, Request, Response} from 'express';
 // import {Request, Response} from 'express';
 import router from '../src/routes/productRoutes';
 import { Router2 } from '../src/routes/categoriesRouter'; 
+import router3 from '../src/routes/userRouter';
 const app = express();
 
 // app.get('/', (req:Request, res:Response)=>{
@@ -10,6 +11,8 @@ const app = express();
     app.use(express.json());
     app.use("/categories", Router2);
     app.use('/products', router);
+    app.use('users', router3);
+  
     app.use((error:any, req:Request, res:Response, next:NextFunction)=>{
         console.log("error received", error);
         if(error.status===404 || error.status===403 || error.status===400){

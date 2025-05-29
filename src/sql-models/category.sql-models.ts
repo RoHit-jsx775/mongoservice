@@ -41,6 +41,7 @@ export const categoryModel={
       "INSERT INTO categories (name) VALUES (?)",
       [category.name,]
     );
+    
     const newcategoryId = result.insertId;
     const [newCategory] = await pool.query<any[]>(
     "SELECT * FROM categories WHERE id = ?",[newcategoryId]);
