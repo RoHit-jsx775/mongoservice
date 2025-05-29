@@ -11,7 +11,7 @@ const app = express();
     app.use(express.json());
     app.use("/categories", Router2);
     app.use('/products', router);
-    app.use('users', router3);
+    app.use('/users', router3);
   
     app.use((error:any, req:Request, res:Response, next:NextFunction)=>{
         console.log("error received", error);
