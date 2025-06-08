@@ -10,7 +10,7 @@ export const userModel={
     async getOneUser(id:Number){
         const [rows]= await pool.query("select * from users where user_id = ? ", [id]);
         //console.log(rows)
-         return Array.isArray(rows) && rows.length ? rows[0] : undefined;
+         return Array.isArray(rows) && rows.length > 0 ? rows[0] : undefined;
     },
     async updateUserById(id:number, users:Partial<{user_name:string, name:string, email:string}>){
         const fields=[];

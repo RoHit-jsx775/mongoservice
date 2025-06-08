@@ -35,14 +35,14 @@ export const orderModel={
       let totalAmount = 0;
 
       for (const product_id of order.product_id) {
-        const product = await SqlProductModel.getProductByIdName(product_id);
+        const [product]: any = await conn.query("SELECT * FROM products WHERE product_id = ?", [product_id]); //product = await SqlProductModel.getProductByIdName(product_id);
         console.log(product);
 
         if (!product) {
           throw new Error("product not found");
         }
 
-        const amount = Number(product.price);  // using constructor to convert string to number
+        const amount = Number(product.price);  
         console.log(amount);
         totalAmount += Number(amount);   
         console.log(totalAmount);
@@ -80,7 +80,7 @@ export const orderModel={
     try {
       await conn.beginTransaction();
       if (order.user_id !== undefined) {
-        await conn.query("UPDATE orders SET user_id = ? WHERE id = ?", [
+        await conn.query("UPDATE orders SET user_id = ? WHERE order_id = ?", [
           order.user_id,
           id,
         ]);
@@ -95,7 +95,8 @@ export const orderModel={
         }
       }
       await conn.commit();
-      return this.getOneOrderById(id);
+      const updatedOrder = this.getOneOrderById(id);
+      return updatedOrder;
     } catch (err) {
       await conn.rollback();
       throw err;

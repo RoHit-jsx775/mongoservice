@@ -1,72 +1,72 @@
-import express from "express";
+// 
+
+
+
+
+//----------------------------------------------------MongoDb-----------------------------------------------------------
+
 import { Request, Response } from "express";
-// import products, { createProduct } from '../models/product';
-// import { getallProduct, getProductById, updateProductById, deleteProductById } from '../models/product';
-// import { parse } from 'path';
-// const router= express.Router();
+import { createProductService, getProductService,getProductByIdService ,updateProductService,deleteProductService } from "../models/mongodb-models/Products/productServices";
 
-import { get } from "http";
 
-import { SqlProductModel } from "../sql-models/product.sql-models";
-export const createProductController = async (req: Request, res: Response) => {
-  const { product_name, price, category_id } = req.body;
-
-  if (!product_name || !price || !category_id) {
-    res.status(400).json({ error: "please provide appropriate input" });
+const validateProduct=(data:any)=>{
+  if(typeof data.product_name !== 'string' || !data.product_name.trim() ){
+    return "product is required"
   }
-
-  const newProduct = await SqlProductModel.create({
-    product_name,
-    price,
-    category_id,
-  });
-  console.log(newProduct);
-  res.status(200).json(newProduct);
-};
-
-export const getallProductController = async (req: Request, res: Response) => {
-  const allProducts = await SqlProductModel.getallProduct();
-  res.json(allProducts);
-};
-
-export const getProductByIdController = async (req: Request, res: Response) => {
-  const productId = parseInt(req.params.id);
-
-  const getOneProduct = await SqlProductModel.getProductByIdName(productId);
-  if (!getOneProduct) {
-    res.status(404).json({ error: "No product found " });
+  if(typeof data.price !=='string'){
+    return "price should be in number"
   }
-
-  res.status(200).json(getOneProduct);
-};
-
-export const updateProductController = async (req: Request, res: Response) => {
-  const productId = parseInt(req.params.id);
-  // const product = ProductModel.getById(productId);
-  // const {name, price , description}=req.body;
-
-  // if (!name || !price || !description){
-  //   res.status(400).json({error:"please provide appropriate input"});
-  // }
-
-  const updatedProduct = await SqlProductModel.updateProductById(
-    productId,
-    req.body
-  );
-
-  if (!updatedProduct) {
-    res.status(500).json({ error: "internal server error" });
+  if(typeof data.description !=='string' || !data.description.trim()){
+    return "description is required"
   }
+  return null;
 
-  res.json(updatedProduct);
-};
-
-export const deleteProductController = async (req: Request, res: Response) => {
-  const productId = parseInt(req.params.id);
-
-  const deleteProduct = await SqlProductModel.deleteProductById(productId);
-  if (!deleteProduct) {
-    res.status(404).json({ error: "product not found" });
+}
+export const createProduct= async (req:Request, res:Response)=>{
+  // const {product_name, price, description, created_at, category}= req.body;
+  const error= validateProduct(req.body);
+    if (error) {
+    res.status(400).json({ message: error });
+    return;
   }
-  res.status(200).json(deleteProduct);
-};
+  const product = await createProductService(req.body);
+ try {
+    res.status(201).json(product);
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+export const getProduct= async(req:Request, res:Response)=>{
+  const product= await getProductService ();
+  res.status(200).json(product);
+
+}
+
+export const getProductById= async(req:Request, res:Response)=>{
+  const id=req.params.id;
+  const product= await getProductByIdService (id);
+  res.status(200).json(product);
+
+}
+
+export const updateProductById= async(req:Request, res:Response)=>{
+  const id=req.params.id;
+  
+  const{product_name, price, }= req.body;
+  const product= await updateProductService ({product_id:id, product_name, price});
+   if (!product) {
+    res.status(404).json({ message: "product not found" });
+    return;
+  }
+  res.status(200).json(product);
+}
+
+export const deleteProductById=async(req:Request, res:Response)=>{
+  const id = req.params.id;
+  const deletedProduct= deleteProductService(id);
+  if(!deletedProduct){
+  res.status(404).json({ message: "product not found" });
+  }
+  res.send("Product deleted successfully");
+}
