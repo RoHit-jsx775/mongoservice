@@ -27,7 +27,7 @@
 import mongoose from "mongoose";
 
 mongoose.connect(
- "mongodb+srv://shushilBhusal:shushilBhusal123@cluster0.di7hvuo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+"mongodb+srv://rohit:rohit@cluster0.3ubr15j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 );
 const db = mongoose.connection;
 

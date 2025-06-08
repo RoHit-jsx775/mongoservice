@@ -20,7 +20,8 @@ const productSchema = new Schema(
       } ,
       updated_at:{
         type: Date,
-       
+        reaquired: false,
+        default: Date.now,
       
       } ,
       category: {
