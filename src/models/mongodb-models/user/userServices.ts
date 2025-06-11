@@ -19,11 +19,13 @@ export async function createUserService(data:{user_name:string , user_email:stri
 }
 
 export async function updateUserService(data:{id:string, name:string, email:string, password:string}){
+    if ( data.name === undefined || data.email === undefined || data.password === undefined) {
       const updatedUser=  await User.updateOne(
       {_id:data.id},
       {$set: {user_name:data.name , user_email:data.email , user_password:data.password}}
       )
       return updatedUser;
+    }
 }
 
 export async function deleteUserService(id:string){

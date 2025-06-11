@@ -16,8 +16,11 @@ export const getProductByIdService=async(id:string)=>{
 
 
 export const updateProductService= async (data:{product_id:string, product_name:string, price:Number})=>{
+    if(data.product_id === undefined || data.product_name === undefined || data.price === undefined){
+        
      const updatedData= await Product.updateOne({_id:data.product_id},{$set:{product_name:data.product_name, price:data.price}});
      return updatedData;
+    }
 }
 
 

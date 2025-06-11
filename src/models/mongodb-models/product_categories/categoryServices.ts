@@ -20,6 +20,7 @@ async function updateCategoryByIdService(data: { id: string; name: string }) {
     { $set: { name: data.name }}
   );
   return category;
+
 }
 
 async function deleteCategoryByIdService(id: string) {

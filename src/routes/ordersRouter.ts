@@ -1,15 +1,15 @@
-import Express, { Router } from 'express'
+import { Router, Request, Response } from 'express'
 import { getAllOrderController,
-         getOrderByIdController,
-         postOrderByIdController,
-         updateOrderByIdController,
-         deleteOrderByIdController
+  getOrderByIdController,
+  postOrderByIdController,
+  updateOrderByIdController,
+  deleteOrderByIdController
     }
   from "../controller/orderController";
 
-const orderRouter = Express.Router(); 
+const orderRouter = Router(); 
 
-orderRouter.get('/', getAllOrderController );
+orderRouter.get('/', getAllOrderController);
 orderRouter.get('/:id', getOrderByIdController);
 orderRouter.post('/', postOrderByIdController);
 orderRouter.put('/:id', updateOrderByIdController );
