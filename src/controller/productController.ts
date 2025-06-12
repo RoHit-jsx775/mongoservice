@@ -1,9 +1,4 @@
-// 
 
-
-
-
-//----------------------------------------------------MongoDb-----------------------------------------------------------
 
 import { Request, Response } from "express";
 import { createProductService, getProductService,getProductByIdService ,updateProductService,deleteProductService } from "../models/mongodb-models/Products/productServices";

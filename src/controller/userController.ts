@@ -88,7 +88,10 @@ function validateUser(body:any){
   if( typeof body.user_email !== "string" || !body.user_email.trim()){
     return "invalid email"
   }
-    if(!body.user_password.trim()){
+    if(!body.user_password.trim()){ 
+
+
+      
     return "invalid password"
   }
   return null;

@@ -6,17 +6,20 @@ import {productRouter} from './routes/productRoutes'
 import { Router2 } from '../src/routes/categoriesRouter'; 
 import {userRouter} from '../src/routes/userRouter';
 import { orderRouter } from './routes/ordersRouter';
+// Make sure the file exists at this path, or update the path if needed
+// Import the authentication middleware (update the path as needed)
+import authetication from './routes/authentication';
+
 const app = express();
 dotenv.config();
 
-// app.get('/', (req:Request, res:Response)=>{
-    //     res.send("hello world i am express");
-    // })
+
     app.use(express.json()); // convert request body to json in beginning which is in string format   
     app.use("/categories", Router2);
     app.use('/products', productRouter);
     app.use('/users', userRouter);
     app.use('/orders', orderRouter);
+   app.use("/authen",authetication );
   
     app.use((error:any, req:Request, res:Response, next:NextFunction)=>{
         console.log("error received", error);
