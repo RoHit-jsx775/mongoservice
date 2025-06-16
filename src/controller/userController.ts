@@ -89,9 +89,6 @@ function validateUser(body:any){
     return "invalid email"
   }
     if(!body.user_password.trim()){ 
-
-
-      
     return "invalid password"
   }
   return null;
@@ -130,6 +127,7 @@ export const createUser= async(req:Request, res:Response)=>{
     res.status(201).json(createdUser)
   }
   catch (err){
+    console.log("eerror...........",err)
     res.send(err);
   }
 

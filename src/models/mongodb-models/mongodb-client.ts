@@ -26,6 +26,7 @@
 
 import mongoose from "mongoose";
 
+
 mongoose.connect(
 "mongodb+srv://rohit:rohit@cluster0.3ubr15j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 );
