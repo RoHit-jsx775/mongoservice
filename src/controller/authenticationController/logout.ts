@@ -7,26 +7,31 @@ export const logout = async (req: Request, res: Response) => {
 
   try {
     if (!user_email) {
-      return res.status(400).json({ message: "User email is required" });
+      res.status(400).json({ message: "User email is required" });
+       return
     }
 
     const user = await getusersByEmailService(user_email);
 
-    if (!user?._id) {
-      return res.status(404).json({ message: "User not found" });
+    if (!user || !user._id) {
+       res.status(404).json({ message: "User not found" });
+       return
     }
 
-    const result = await logoutUserByIdService(user_email);
+ 
+    const result = await logoutUserByIdService(user._id.toString());
 
     if (!result || result.deletedCount === 0) {
-      return res.status(400).json({ message: "No active session found for this user" });
+      res.status(400).json({ message: "No active session found for this user" });
+       return
     }
 
-    return res.status(200).json({
-      message: "Logout successful",
-    });
+  res.status(200).json({ message: "Logout successful" });
+     return
+
   } catch (err) {
     console.error("Logout error:", err);
-    return res.status(500).json({ message: "Server error", error: err });
+    res.status(500).json({ message: "Server error", error: err });
+     return
   }
 };

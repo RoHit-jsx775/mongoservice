@@ -7,7 +7,7 @@ import { logout } from '../controller/authenticationController/logout';
 // Public Routes
 router.post('/register', registerController);
 router.post('/login',login);
-router.delete('/logout',logout);
+router.post('/logout',logout);
 
 
 

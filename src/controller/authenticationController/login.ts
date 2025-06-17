@@ -26,7 +26,8 @@ export const login = async (req: Request, res: Response) => {
     }
 
     if (!userexist || userexist.length === 0) {
-       res.status(400).json({ message: "User not found" });
+      res.status(400).json({ message: "User not found" });
+        return 
     }
    
 
@@ -37,7 +38,8 @@ export const login = async (req: Request, res: Response) => {
     console.log("userid", userId);
 
     if (!userId) {
-      return res.status(400).json({ message: "User ID not found for session creation" });
+      res.status(400).json({ message: "User ID not found for session creation" });
+       return
     }
 
     const UserSession = await createSession({
@@ -60,15 +62,16 @@ export const login = async (req: Request, res: Response) => {
     console.log("save...",save)
 
 
-    return res.status(200).json({
+   res.status(200).json({
       message: "Login successful, session created",
       session: UserSession,
       loginLog: save,
+      
     });
 
   } catch (err) {
     console.error("Login error:", err);
-    return res.status(500).json({ message: "Server error", error: err });
+    res.status(500).json({ message: "Server error", error: err });
   }
 };
 

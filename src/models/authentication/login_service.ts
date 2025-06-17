@@ -11,9 +11,9 @@ export async function createloginService(data:{ user_email:string, user_password
     const createdUser= new loginUser(data);
     return await createdUser.save();
 }
-export async function checkIfUserExist(user_email:string,user_password:string) {
-    return await loginUser.find({user_email,user_password});
-    
+
+export async function checkIfUserExist(user_email: string, user_password: string) {
+  const check = await User.find({ user_email, user_password });
+  console.log("checK", check);
+  return check; 
 }
-
-

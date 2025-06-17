@@ -1,5 +1,6 @@
-import loginUser from "./login";
 
-export const logoutUserByIdService = async (user_email: string) => {
-  return await loginUser.deleteOne({ user_email: user_email });
-};
+import userSession from "../sessionUsermodel/sessions";
+
+export async function logoutUserByIdService(user_id: string) {
+  return await userSession.deleteMany({ user_id });
+}
