@@ -27,7 +27,7 @@ import {
             deleteCategory
          
     }
-  from "../controller/categoryController";
+  from "../controller/crudeController/categoryController";
 
 const Router2 = Express.Router(); 
 

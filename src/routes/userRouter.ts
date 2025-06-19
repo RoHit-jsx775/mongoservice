@@ -22,7 +22,7 @@
 import express from 'express'
 import {
     getAllUser, getUserById, createUser, updateUser, deleteUserById
-} from '../controller/userController'
+} from '../controller/crudeController/userController'
 
 const userRouter= express.Router();
 userRouter.get("/", getAllUser);

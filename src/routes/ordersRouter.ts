@@ -5,7 +5,7 @@ import { getAllOrderController,
   updateOrderByIdController,
   deleteOrderByIdController
     }
-  from "../controller/orderController";
+  from "../controller/crudeController/orderController";
 
 const orderRouter = Router(); 
 

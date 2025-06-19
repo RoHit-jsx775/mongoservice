@@ -1,5 +1,7 @@
-import User from "../mongodb-models/user/user.mongodb-model"
+
+import User from "../../mongodb-models/user/user.mongodb-model";
 import loginUser from "./login";
+
 
 
 export async function getAllUserlogin(user_email:string, user_password:string) {

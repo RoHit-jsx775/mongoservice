@@ -1,5 +1,6 @@
 import { Schema } from "mongoose";
-import mongoose from "../mongodb-models/mongodb-client";
+import mongoose from "../../mongodb-models/mongodb-client";
+
 
 
 

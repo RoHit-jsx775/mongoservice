@@ -77,7 +77,7 @@
 
 import { Request, Response } from "express";
 
-import { getAllUsersService, getUserByIdService, createUserService, updateUserService, deleteUserService } from "../models/mongodb-models/user/userServices";
+import { getAllUsersService, getUserByIdService, createUserService, updateUserService, deleteUserService } from "../../models/mongodb-models/user/userServices";
 // import { request } from "http";
 // import { categoryModel } from "../sql-models/category.sql-models";
 

@@ -96,7 +96,7 @@ import {
  updateOrderByIdService,
   deleteOrderByIdService, 
 
-} from "../models/mongodb-models/order/orderService";
+} from "../../models/mongodb-models/order/orderService";
 
 function validateOrderInput(body: any) {
   if (typeof body.user_id !== "string") {

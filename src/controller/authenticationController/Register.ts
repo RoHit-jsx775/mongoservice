@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { registerUserService } from "../../models/authentication/userAthentication";
+import { registerUserService } from "../../models/authentication/loginmodel/registerAthentication";
 
 export async function registerController(req: Request, res: Response) {
   try {

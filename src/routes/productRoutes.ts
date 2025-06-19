@@ -30,7 +30,7 @@
 
 
 import  express  from "express";
-import { createProduct, getProduct, getProductById ,updateProductById,deleteProductById} from "../controller/productController";
+import { createProduct, getProduct, getProductById ,updateProductById,deleteProductById} from "../controller/crudeController/productController";
 
 const productRouter= express.Router();
 

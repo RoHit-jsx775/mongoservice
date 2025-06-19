@@ -4,6 +4,7 @@ import mongoose from "../mongodb-client";
 
 
 const userSchema = new Schema({
+   
     user_name: {
         type: String,
         required: true

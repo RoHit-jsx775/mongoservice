@@ -59,14 +59,8 @@
 
 
 import { Request, Response, NextFunction } from "express";
+import { createCategoryService, deleteCategoryByIdService, getAllCategoriesService, getCategoryByIdService, updateCategoryByIdService } from "../../models/mongodb-models/product_categories/categoryServices";
 // import { CategoryModel } from "../models/category.model";
-import {
-  createCategoryService,
-  deleteCategoryByIdService,
-  getAllCategoriesService,
-  getCategoryByIdService,
-  updateCategoryByIdService,
-} from "../models/mongodb-models/product_categories/categoryServices";
 
 function validateCategoryInput(body: any) {
   if (typeof body.name !== "string" || !body.name.trim()) {
